@@ -11,7 +11,7 @@
 	],
 
 	"extra": {
-		"installer-name": "socialfeeds"
+		"installer-name": "social-feeds"
 	},
 	"require": {
 		"silverstripe/framework": "^3.0",
