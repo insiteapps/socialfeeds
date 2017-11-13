@@ -1,5 +1,5 @@
 {
-	"name": "isaacrankin/socialfeeds",
+	"name": "insiteapps/socialfeeds",
 	"description": "A social feed module for fetching content from Facebook and Twitter",
 	"type": "silverstripe-module",
 	"keywords": ["silverstripe", "facebook", "twitter", "instagram", "social feed"],
