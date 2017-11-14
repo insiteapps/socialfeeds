@@ -197,6 +197,6 @@ class SocialFeedFacebook extends SocialFeed implements ProviderInterface
      */
     public function getImage($post)
     {
-        return (isset($post['full_picture'])) ? $post['full_picture'] : null;
+        return (isset($post['full_picture'])) ? $post['full_picture'] : false;
     }
 }

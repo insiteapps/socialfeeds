@@ -100,13 +100,14 @@ class SocialFeed extends DataObject
                 $created->setValue($this->getPostCreated($post));
 
                 $data[] = array(
-                    'Type'     => $this->getType(),
-                    'Content'  => $this->getPostContent($post),
-                    'Created'  => $created,
-                    'URL'      => $this->getPostUrl($post),
-                    'Data'     => $post,
-                    'UserName' => $this->getUserName($post),
-                    'Image'    => $this->getImage($post),
+                    'SocialFeedsDir' => SOCIAL_FEEDS_DIR,
+                    'Type'           => $this->getType(),
+                    'Content'        => $this->getPostContent($post),
+                    'Created'        => $created,
+                    'URL'            => $this->getPostUrl($post),
+                    'Data'           => $post,
+                    'UserName'       => $this->getUserName($post),
+                    'Image'          => $this->getImage($post),
                 );
             }
         }
