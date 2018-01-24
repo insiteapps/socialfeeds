@@ -59,7 +59,7 @@ class SocialFeedFacebook extends SocialFeed implements ProviderInterface
     {
         $fields = parent::getCMSFields();
         $fields->addFieldsToTab('Root.Main', new LiteralField('sf_html_1', '<h4>To get the necessary Facebook API credentials you\'ll need to create a <a href="https://developers.facebook.com/apps" target="_blank">Facebook App.</a></h4><p>&nbsp;</p>'), 'Label');
-        $fields->replaceField('FacebookType', DropdownField::create('FacebookType', 'Facebook Type', $this->config()->facebook_types));
+        $fields->replaceField('Type', DropdownField::create('FacebookType', 'Facebook Type', $this->config()->facebook_types));
         $fields->removeByName('AccessToken');
 
         return $fields;
