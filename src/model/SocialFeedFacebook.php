@@ -35,7 +35,7 @@ class SocialFeedFacebook extends SocialFeed implements ProviderInterface
         'AppID'       => 'Varchar(400)',
         'AppSecret'   => 'Varchar(400)',
         'AccessToken' => 'Varchar(400)',
-        'Type'        => 'Int',
+        'FacebookType'        => 'Int',
     );
 
     private static $singular_name = 'Facebook';
@@ -59,7 +59,7 @@ class SocialFeedFacebook extends SocialFeed implements ProviderInterface
     {
         $fields = parent::getCMSFields();
         $fields->addFieldsToTab('Root.Main', new LiteralField('sf_html_1', '<h4>To get the necessary Facebook API credentials you\'ll need to create a <a href="https://developers.facebook.com/apps" target="_blank">Facebook App.</a></h4><p>&nbsp;</p>'), 'Label');
-        $fields->replaceField('Type', DropdownField::create('FacebookType', 'Facebook Type', $this->config()->facebook_types));
+        $fields->replaceField('FacebookType', DropdownField::create('FacebookType', 'Facebook Type', $this->config()->facebook_types));
         $fields->removeByName('AccessToken');
 
         return $fields;
@@ -116,8 +116,12 @@ class SocialFeedFacebook extends SocialFeed implements ProviderInterface
         $queryParameters = http_build_query($queryParameters);
 
         // Get all data for the FB page
-        switch ($this->Type) {
+        
+       // \Debug::show($this->Type);
+        
+        switch ($this->FacebookType) {
             case self::POSTS_AND_COMMENTS:
+                \Debug::show($this->FacebookType);
                 $request = $provider->getRequest('GET', 'https://graph.facebook.com/' . $this->PageID . '/feed?' . $queryParameters);
                 break;
 
@@ -126,16 +130,21 @@ class SocialFeedFacebook extends SocialFeed implements ProviderInterface
                 break;
 
             default:
-                throw new Exception('Invalid FacebookType (' . $this->Type . ')');
+    
+                \Debug::show($this->FacebookType);
+                
+                throw new Exception('Invalid FacebookType (' . $this->FacebookType . ')');
                 break;
         }
         $result = $provider->getResponse($request);
 
         return $result['data'];
     }
-
+    
     /**
-     * @return HTMLText
+     * @param $post
+     *
+     * @return \DBField
      */
     public function getPostContent($post)
     {
